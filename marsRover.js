@@ -19,8 +19,6 @@ var rover = {
   
   // ======================
   function turnLeft(rover){
-    console.log("turnLeft was called!");
-  }
     switch(rover.direction) {
       case "N":
         rover.direction = "W";
@@ -35,11 +33,11 @@ var rover = {
         rover.direction = "N";
         break;
     }
+      console.log("turnLeft was called! Current direction is " + rover.direction);
+  }
   
   function turnRight(rover){
-    console.log("turnRight was called!");
-  }
-    switch(rover.direction) { 
+    switch(rover.direction) {
       case "N": 
         rover.direction = "E";
         break;
@@ -53,44 +51,51 @@ var rover = {
         rover.direction = "N";
         break;
     }
+      console.log("turnRight was called! Current direction is " + rover.direction);
+  }
   
   function moveForward(rover){
-    console.log("moveForward was called")
-  }
   switch(rover.direction) {
     case "N":
+    if( rover.y===0){
+      console.log("Danger! You will fall out!!");
+      return false;
+      }
       rover.y--;
       break;
+  
     case "E":
+    if ( rover.x===9){
+      console.log("Danger! You will fall out!!");
+      return false;
+      }
       rover.x++;
       break;
-    case "W":
+  
+    case "W": 
+    if (rover.x===0){
+      console.log("Danger! You will fall out!!");
+      return false;
+      }
       rover.x--;
       break;
+  
     case "S":
+    if(rover.y===9){
+      console.log("Danger! You will fall out!!");
+      return false;
+      }
       rover.y++;
       break;
+    }
+    console.log("moveForward was called! Rover position is " + rover.x + '-' + rover.y);
   }
+  
    
-    function main(commands){
-    commands =commands.split()
-    for (var i=0; i<= commands.length; i++) {
-      if(commands[i]==='f'){
-        moveForward(rover);
-        rover["travelLog"].push([rover.x,rover.y]);
-      } else if (commands[i]==='l') {
-        turnLeft(rover);
-      } else if (commands[i]==='r') {
-        turnRight(rover)
-      }
-    }
-    }
   
-     function main2(){
-    commands = window.prompt("Please enter the movements");
-    console.log(commands)
+    function test(commands){
     commands = commands.split('')
-    console.log(commands)
+    //commands===['f','l','r'] 
     for (var i=0; i<= commands.length; i++) {
       if(commands[i]==='f'){
         moveForward(rover);
@@ -102,5 +107,23 @@ var rover = {
       }
     }
     }
+    //console.log(rover.travelLog);
+    //test("rffrfflfrff")
   
-  main2()
+     function test2(){
+    commands = window.prompt("Please enter the movements");
+    commands = commands.split()
+    //commands===['f','l','r'] 
+    for (var i=0; i<= commands.length; i++) {
+      if(commands[i]==='f'){
+        moveForward(rover);
+        rover["travelLog"].push([rover.x +rover.y]);
+      } else if (commands[i]==='l') {
+        turnLeft(rover);
+      } else if (commands[i]==='r') {
+        turnRight(rover)
+      }
+    }
+    }
+  
+  test("rffrfflff")
