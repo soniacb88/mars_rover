@@ -33,7 +33,7 @@ var rover = {
         rover.direction = "N";
         break;
     }
-      console.log("turnLeft was called! Current direction is " + rover.direction);
+      console.log("turnLeft was called! Current direction is " + rover.direction + " and rover position is " + rover.x +"-"  +rover.y);
   }
   
   function turnRight(rover){
@@ -51,7 +51,7 @@ var rover = {
         rover.direction = "N";
         break;
     }
-      console.log("turnRight was called! Current direction is " + rover.direction);
+      console.log("turnRight was called! Current direction is " + rover.direction + " and rover position is " + rover.x  + "-" +rover.y);
   }
   
   function moveForward(rover){
@@ -91,6 +91,44 @@ var rover = {
     console.log("moveForward was called! Rover position is " + rover.x + '-' + rover.y);
   }
   
+  
+  function backForward(rover){
+  switch(rover.direction) {
+    case "N":
+    if( rover.y===9){
+      console.log("Danger! You will fall out!!");
+      return false;
+      }
+      rover.y++;
+      break;
+  
+    case "E":
+    if ( rover.x===0){
+      console.log("Danger! You will fall out!!");
+      return false;
+      }
+      rover.x--;
+      break;
+  
+    case "W": 
+    if (rover.x===9){
+      console.log("Danger! You will fall out!!");
+      return false;
+      }
+      rover.x++;
+      break;
+  
+    case "S":
+    if(rover.y===0){
+      console.log("Danger! You will fall out!!");
+      return false;
+      }
+      rover.y--;
+      break;
+    }
+    console.log("backForward was called! Rover position is " + rover.x + rover.y);
+  }
+  
    
   
     function test(commands){
@@ -104,6 +142,8 @@ var rover = {
         turnLeft(rover);
       } else if (commands[i]==='r') {
         turnRight(rover)
+      } else if (commands[i]=== 'b') {
+        backForward(rover);
       }
     }
     }
@@ -126,4 +166,4 @@ var rover = {
     }
     }
   
-  test("rffrfflff")
+  test("rrbbllfrfffffflfrr")
