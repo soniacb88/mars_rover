@@ -4,7 +4,20 @@ var rover = {
     y : 0,
     travelLog: [[0,0]],
   };
-
+  /*var grid = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];*/
+  
+  // ======================
   function turnLeft(rover){
     console.log("turnLeft was called!");
   }
@@ -59,10 +72,8 @@ var rover = {
       break;
   }
    
-  
-    function test(commands){
-    commands ==commands.split()
-    //commands===['f','l','r'] 
+    function main(commands){
+    commands =commands.split()
     for (var i=0; i<= commands.length; i++) {
       if(commands[i]==='f'){
         moveForward(rover);
@@ -74,5 +85,22 @@ var rover = {
       }
     }
     }
-    console.log(rover.travelLog);
-    test("rffrfflfrff")
+  
+     function main2(){
+    commands = window.prompt("Please enter the movements");
+    console.log(commands)
+    commands = commands.split('')
+    console.log(commands)
+    for (var i=0; i<= commands.length; i++) {
+      if(commands[i]==='f'){
+        moveForward(rover);
+        rover["travelLog"].push([rover.x,rover.y]);
+      } else if (commands[i]==='l') {
+        turnLeft(rover);
+      } else if (commands[i]==='r') {
+        turnRight(rover)
+      }
+    }
+    }
+  
+  main2()
